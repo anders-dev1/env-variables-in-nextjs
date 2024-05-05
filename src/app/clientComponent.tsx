@@ -16,20 +16,25 @@ function ClientComponent() {
     const publicDevFileVariable = process.env.NEXT_PUBLIC_devFileVariable;
     const prodFileVariable = process.env.prodFileVariable;
     const publicProdFileVariable = process.env.NEXT_PUBLIC_prodFileVariable;
-    const providedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
+    const providedVariable = process.env.providedVariable;
     const publicProvidedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
 
     if (isClient) {
-        return <ComponentValues
-            localFileVariable={localFileVariable}
-            publicLocalFileVariable={publicLocalFileVariable}
-            devFileVariable={devFileVariable}
-            publicDevFileVariable={publicDevFileVariable}
-            prodFileVariable={prodFileVariable}
-            publicProdFileVariable={publicProdFileVariable}
-            providedVariable={providedVariable}
-            publicProvidedVariable={publicProvidedVariable}
-        />
+        return (
+            <div>
+                <p className={"text-xl font-bold"}>Rendered clientside</p>
+                <ComponentValues
+                    localFileVariable={localFileVariable}
+                    publicLocalFileVariable={publicLocalFileVariable}
+                    devFileVariable={devFileVariable}
+                    publicDevFileVariable={publicDevFileVariable}
+                    prodFileVariable={prodFileVariable}
+                    publicProdFileVariable={publicProdFileVariable}
+                    providedVariable={providedVariable}
+                    publicProvidedVariable={publicProvidedVariable}
+                />
+            </div>
+        )
     }
 }
 

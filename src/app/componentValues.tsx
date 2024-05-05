@@ -24,8 +24,6 @@ function ComponentValues({
                          }: Props) {
     return (
         <div className={"space-y-2"}>
-            <p className={"text-xl font-bold"}>Rendered clientside</p>
-
             <div>
                 <ValueDisplay description={"From local env file"} value={localFileVariable}/>
                 <ValueDisplay description={"From local env file prepended with NEXT_PUBLIC"}
