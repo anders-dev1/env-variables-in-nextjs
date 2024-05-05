@@ -1,13 +1,23 @@
 'use client';
 
 import React, {useEffect, useState} from 'react';
-import ValueDisplay from "@/app/valueDisplay";
-import ComponentValues from "@/app/componentValues";
+import ValueDisplay from "@/components/valueDisplay";
+import ComponentValues from "@/components/componentValues";
+import EnvVariables from "@/actions/envVariables";
 
 function ClientComponent() {
-    const [isClient, setIsClient] = useState(false)
+    const [isClient, setIsClient] = useState(false);
+    const [actionVariable, setActionVariable] = useState<string | undefined>(undefined);
+    const [publicActionVariable, setPublicActionVariable] = useState<string | undefined>(undefined);
+
+
     useEffect(() => {
-        setIsClient(true)
+        setIsClient(true);
+
+        EnvVariables().then(result => {
+            setActionVariable(result.actionVariable);
+            setPublicActionVariable(result.publicActionVariable);
+        });
     }, [])
 
     const localFileVariable = process.env.localFileVariable;
@@ -17,7 +27,7 @@ function ClientComponent() {
     const prodFileVariable = process.env.prodFileVariable;
     const publicProdFileVariable = process.env.NEXT_PUBLIC_prodFileVariable;
     const providedVariable = process.env.providedVariable;
-    const publicProvidedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
+    const publicProvidedVariable = process.env.NEXT_PUBLIC_providedVariable;
 
     if (isClient) {
         return (
@@ -33,6 +43,11 @@ function ClientComponent() {
                     providedVariable={providedVariable}
                     publicProvidedVariable={publicProvidedVariable}
                 />
+                <div className={"mt-2"}>
+                    <ValueDisplay description={"Provided env variable from action"} value={actionVariable}/>
+                    <ValueDisplay description={"Provided public env variable from action"}
+                                  value={publicActionVariable}/>
+                </div>
             </div>
         )
     }

@@ -1,15 +1,8 @@
 import React from 'react';
-import {unstable_noStore as noStore} from "next/dist/server/web/spec-extension/unstable-no-store";
-import ComponentValues from "@/app/componentValues";
+import ComponentValues from "@/components/componentValues";
 
-interface Props {
-    noStoreEnabled: boolean;
-}
 
-function ServerComponent({noStoreEnabled}: Props) {
-    if (noStoreEnabled){
-        noStore();
-    }
+function ServerComponentNoStore() {
 
     const localFileVariable = process.env.localFileVariable;
     const publicLocalFileVariable = process.env.NEXT_PUBLIC_localFileVariable;
@@ -22,7 +15,7 @@ function ServerComponent({noStoreEnabled}: Props) {
 
     return(
         <div>
-            <p className={"text-xl font-bold"}>Rendered serverside {noStoreEnabled && "with noStore()"}</p>
+            <p className={"text-xl font-bold"}>Rendered serverside with noStore()</p>
             <ComponentValues
                 localFileVariable={localFileVariable}
                 publicLocalFileVariable={publicLocalFileVariable}
@@ -37,4 +30,4 @@ function ServerComponent({noStoreEnabled}: Props) {
     )
 }
 
-export default ServerComponent;
+export default ServerComponentNoStore;

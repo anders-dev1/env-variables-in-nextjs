@@ -1,13 +1,12 @@
-import ClientComponent from "@/components/clientComponent";
 import ServerComponent from "@/components/serverComponent";
+import ClientComponent from "@/components/clientComponent";
 
-export default function Home() {
+export default function Page() {
     return (
         <div className={"flex flex-col items-center mt-2"}>
             <div className={"space-y-8"}>
-                <ServerComponent noStoreEnabled={false}/>
-                <ClientComponent/>
+                <ServerComponent noStoreEnabled={true}/>
             </div>
         </div>
-    );
+    )
 }

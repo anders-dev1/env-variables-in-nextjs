@@ -1,5 +1,5 @@
 import React from 'react';
-import ValueDisplay from "@/app/valueDisplay";
+import ValueDisplay from "@/components/valueDisplay";
 
 interface Props {
     localFileVariable: string | undefined,

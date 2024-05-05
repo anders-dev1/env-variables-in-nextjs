@@ -1,12 +1,17 @@
 'use server'
 
 interface EnvVariablesResult {
-    something: string
+    actionVariable: string | undefined
+    publicActionVariable: string |undefined
 }
 
 async function EnvVariables(): Promise<EnvVariablesResult> {
     'use server';
-    return { something: process.env.secret || "" }
+
+    return {
+        actionVariable: process.env.actionVariable || undefined,
+        publicActionVariable: process.env.NEXT_PUBLIC_actionVariable || undefined
+    }
 }
 
 export default EnvVariables;
