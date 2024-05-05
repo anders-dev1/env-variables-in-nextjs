@@ -1,5 +1,6 @@
 import React from 'react';
 import {unstable_noStore as noStore} from "next/dist/server/web/spec-extension/unstable-no-store";
+import ComponentValues from "@/app/componentValues";
 
 interface Props {
     noStoreEnabled: boolean;
@@ -10,30 +11,25 @@ function ServerComponent({noStoreEnabled}: Props) {
         noStore();
     }
 
-    return (
-        <div className={"space-y-2"}>
-            <p className={"text-xl font-bold"}>Rendered serverside {noStoreEnabled && "with noStore()"}</p>
-            <div>
-                <p>From local env file: {process.env.localFileVariable}</p>
-                <p>From local env file prepended with NEXT_PUBLIC: {process.env.NEXT_PUBLIC_localFileVariable}</p>
-            </div>
+    const localFileVariable = process.env.localFileVariable;
+    const publicLocalFileVariable = process.env.NEXT_PUBLIC_localFileVariable;
+    const devFileVariable = process.env.devFileVariable;
+    const publicDevFileVariable = process.env.NEXT_PUBLIC_devFileVariable;
+    const prodFileVariable = process.env.prodFileVariable;
+    const publicProdFileVariable = process.env.NEXT_PUBLIC_prodFileVariable;
+    const providedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
+    const publicProvidedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
 
-            <div>
-                <p>From dev env file: {process.env.devFileVariable}</p>
-                <p>From dev env file prepended with NEXT_PUBLIC: {process.env.NEXT_PUBLIC_devFileVariable}</p>
-            </div>
-
-            <div>
-                <p>From prod env file: {process.env.prodFileVariable}</p>
-                <p>From prod env file prepended with NEXT_PUBLIC: {process.env.prodFileVariable}</p>
-            </div>
-
-            <div>
-                <p>Provided env variable with NEXT_PUBLIC: {process.env.NEXT_PUBLIC_HELLO}</p>
-                <p>Provided env variable: {process.env.secret}</p>
-            </div>
-        </div>
-    );
+    return <ComponentValues
+        localFileVariable={localFileVariable}
+        publicLocalFileVariable={publicLocalFileVariable}
+        devFileVariable={devFileVariable}
+        publicDevFileVariable={publicDevFileVariable}
+        prodFileVariable={prodFileVariable}
+        publicProdFileVariable={publicProdFileVariable}
+        providedVariable={providedVariable}
+        publicProvidedVariable={publicProvidedVariable}
+    />
 }
 
 export default ServerComponent;

@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState} from 'react';
 import ValueDisplay from "@/app/valueDisplay";
+import ComponentValues from "@/app/componentValues";
 
 function ClientComponent() {
     const [isClient, setIsClient] = useState(false)
@@ -9,38 +10,26 @@ function ClientComponent() {
         setIsClient(true)
     }, [])
 
+    const localFileVariable = process.env.localFileVariable;
+    const publicLocalFileVariable = process.env.NEXT_PUBLIC_localFileVariable;
+    const devFileVariable = process.env.devFileVariable;
+    const publicDevFileVariable = process.env.NEXT_PUBLIC_devFileVariable;
+    const prodFileVariable = process.env.prodFileVariable;
+    const publicProdFileVariable = process.env.NEXT_PUBLIC_prodFileVariable;
+    const providedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
+    const publicProvidedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
 
     if (isClient) {
-        return (
-            <div className={"space-y-2"}>
-                <p className={"text-xl font-bold"}>Rendered clientside</p>
-
-                <div>
-                    <ValueDisplay description={"From local env file"} value={process.env.localFileVariable}/>
-                    <ValueDisplay description={"From local env file prepended with NEXT_PUBLIC"}
-                                  value={process.env.NEXT_PUBLIC_localFileVariable}/>
-                </div>
-
-                <div>
-                    <ValueDisplay description={"From dev env file"} value={process.env.devFileVariable}/>
-                    <ValueDisplay description={"From dev env file prepended with NEXT_PUBLIC"}
-                                  value={process.env.NEXT_PUBLIC_devFileVariable}/>
-                </div>
-
-                <div>
-                    <ValueDisplay description={"From prod env file"} value={process.env.prodFileVariable}/>
-                    <ValueDisplay description={"From prod env file prepended with NEXT_PUBLIC"}
-                                  value={process.env.NEXT_PUBLIC_prodFileVariable}/>
-                </div>
-
-                <div>
-                    <ValueDisplay description={"Provided env variable with NEXT_PUBLIC"}
-                                  value={process.env.NEXT_PUBLIC_HELLO}/>
-                    <ValueDisplay description={"Provided env variable"} value={process.env.secret}/>
-                </div>
-
-            </div>
-        );
+        return <ComponentValues
+            localFileVariable={localFileVariable}
+            publicLocalFileVariable={publicLocalFileVariable}
+            devFileVariable={devFileVariable}
+            publicDevFileVariable={publicDevFileVariable}
+            prodFileVariable={prodFileVariable}
+            publicProdFileVariable={publicProdFileVariable}
+            providedVariable={providedVariable}
+            publicProvidedVariable={publicProvidedVariable}
+        />
     }
 }
 
