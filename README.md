@@ -17,7 +17,8 @@ Be aware that the `npm run dev` version and docker version run on separate ports
 The example code shows how `process.env.{name}` variables are rendered by Next.js. There is a root page and one that can be accessed at `/nostore` which shows how `unstable_noStore()` effects the rendering.
 
 ### Rendering in devmode (npm run dev)
-The below image displays how the example prints out rendering in dev mode. The result from the source page has been spliced with the one at /nostore: 
+The below image displays how the example prints out rendering in dev mode. The result from the source page has been spliced with the one at `/nostore`:
+
 <img src="images/npm-run-dev-rendering.png">
 
 From this result we can understand:
@@ -30,7 +31,8 @@ From this result we can understand:
   * Only env file variables prepended with NEXT_PUBLIC can be displayed.
   * No environment variables are provided and can therefore not be displayed.
 
-The below image displays how the example prints out rendering in being hosted in a docker image. The result from the source page has been spliced with the one at /nostore:
+The below image displays how the example prints out rendering in being hosted in a docker image. The result from the source page has been spliced with the one at `/nostore`:
+
 <img src="images/docker-run.png">
 
 From this result we can understand:
