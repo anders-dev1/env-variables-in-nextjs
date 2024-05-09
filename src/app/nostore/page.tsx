@@ -6,6 +6,7 @@ export default function Page() {
         <div className={"flex flex-col items-center mt-2"}>
             <div className={"space-y-8"}>
                 <ServerComponent noStoreEnabled={true}/>
+                <ClientComponent noStoreEnabled={true}/>
             </div>
         </div>
     )

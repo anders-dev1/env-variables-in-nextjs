@@ -4,12 +4,20 @@ import React, {useEffect, useState} from 'react';
 import ValueDisplay from "@/components/valueDisplay";
 import ComponentValues from "@/components/componentValues";
 import EnvVariables from "@/actions/envVariables";
+import {unstable_noStore as noStore} from "next/dist/server/web/spec-extension/unstable-no-store";
 
-function ClientComponent() {
+interface Props {
+    noStoreEnabled: boolean;
+}
+
+function ClientComponent({noStoreEnabled}: Props) {
+    if (noStoreEnabled){
+        noStore();
+    }
+
     const [isClient, setIsClient] = useState(false);
     const [actionVariable, setActionVariable] = useState<string | undefined>(undefined);
     const [publicActionVariable, setPublicActionVariable] = useState<string | undefined>(undefined);
-
 
     useEffect(() => {
         setIsClient(true);
@@ -32,7 +40,7 @@ function ClientComponent() {
     if (isClient) {
         return (
             <div>
-                <p className={"text-xl font-bold"}>Rendered clientside</p>
+                <p className={"text-xl font-bold"}>Rendered clientside {noStoreEnabled && "with noStore()"}</p>
                 <ComponentValues
                     localFileVariable={localFileVariable}
                     publicLocalFileVariable={publicLocalFileVariable}
@@ -42,12 +50,9 @@ function ClientComponent() {
                     publicProdFileVariable={publicProdFileVariable}
                     providedVariable={providedVariable}
                     publicProvidedVariable={publicProvidedVariable}
+                    actionProvidedVariable={actionVariable}
+                    publicActionProvidedVariable={publicActionVariable}
                 />
-                <div className={"mt-2"}>
-                    <ValueDisplay description={"Provided env variable from action"} value={actionVariable}/>
-                    <ValueDisplay description={"Provided public env variable from action"}
-                                  value={publicActionVariable}/>
-                </div>
             </div>
         )
     }

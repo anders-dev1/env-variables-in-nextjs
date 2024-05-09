@@ -1,12 +1,13 @@
 import React from 'react';
 import {unstable_noStore as noStore} from "next/dist/server/web/spec-extension/unstable-no-store";
 import ComponentValues from "@/components/componentValues";
+import EnvVariables from "@/actions/envVariables";
 
 interface Props {
     noStoreEnabled: boolean;
 }
 
-function ServerComponent({noStoreEnabled}: Props) {
+async function ServerComponent({noStoreEnabled}: Props) {
     if (noStoreEnabled){
         noStore();
     }
@@ -20,6 +21,8 @@ function ServerComponent({noStoreEnabled}: Props) {
     const providedVariable = process.env.providedVariable;
     const publicProvidedVariable = process.env.NEXT_PUBLIC_PROVIDED_VARIABLE;
 
+    const result = await EnvVariables();
+
     return(
         <div>
             <p className={"text-xl font-bold"}>Rendered serverside {noStoreEnabled && "with noStore()"}</p>
@@ -32,6 +35,8 @@ function ServerComponent({noStoreEnabled}: Props) {
                 publicProdFileVariable={publicProdFileVariable}
                 providedVariable={providedVariable}
                 publicProvidedVariable={publicProvidedVariable}
+                actionProvidedVariable={result.actionVariable}
+                publicActionProvidedVariable={result.publicActionVariable}
             />
         </div>
     )

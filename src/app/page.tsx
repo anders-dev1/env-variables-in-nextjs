@@ -6,7 +6,7 @@ export default function Home() {
         <div className={"flex flex-col items-center mt-2"}>
             <div className={"space-y-8"}>
                 <ServerComponent noStoreEnabled={false}/>
-                <ClientComponent/>
+                <ClientComponent noStoreEnabled={false}/>
             </div>
         </div>
     );
