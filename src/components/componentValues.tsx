@@ -49,16 +49,20 @@ function ComponentValues({
                 </div>
             </div>
 
-            <div>
-                <ValueDisplay description={"Provided env variable"} value={providedVariable}/>
-                <ValueDisplay description={"Provided env variable with NEXT_PUBLIC"}
-                              value={publicProvidedVariable}/>
-            </div>
+            <div className={"space-y-2 p-2 outline outline-1 outline-amber-500"}>
+                <p className={"text-amber-500"}>Environment variables</p>
 
-            <div>
-                <ValueDisplay description={"Provided action variable"} value={actionProvidedVariable}/>
-                <ValueDisplay description={"Provided action variable with NEXT_PUBLIC"}
-                              value={publicActionProvidedVariable}/>
+                <div>
+                    <ValueDisplay description={"Provided env variable"} value={providedVariable}/>
+                    <ValueDisplay description={"Provided env variable with NEXT_PUBLIC"}
+                                  value={publicProvidedVariable}/>
+                </div>
+
+                <div>
+                    <ValueDisplay description={"Provided action variable"} value={actionProvidedVariable}/>
+                    <ValueDisplay description={"Provided action variable with NEXT_PUBLIC"}
+                                  value={publicActionProvidedVariable}/>
+                </div>
             </div>
 
         </div>
