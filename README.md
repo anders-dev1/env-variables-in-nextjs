@@ -1,7 +1,7 @@
 # Environment variables in Next.js example
 This example project aims to showcase how environment variables are handled in Next.js currently. It displays how .env files and provided environment variables are rendered client and serverside.
 
-A greater explanation on how environment variables in Next.js works can be found [here](https://google.com).
+A greater explanation on how environment variables in Next.js works can be found [here](https://andersmadsen.dev/guides/how-to-use-environment-variables-in-nextjs).
 
 ## Running the example
 This example can be run simply by using `npm run dev`. It is then accessible at http://localhost:3000.
